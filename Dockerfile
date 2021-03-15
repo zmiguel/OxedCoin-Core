@@ -23,7 +23,7 @@ RUN apt-get install -y libminiupnpc-dev
 RUN apt-get install -y libzmq3-dev
 
 #build oxedcoin source
-RUN chmod +x /oxedcoin/autogen.sh
+RUN chmod -R 777 /oxedcoin
 RUN ./autogen.sh
 RUN ./configure --disable-wallet --without-gui --without-miniupnpc
 RUN make
