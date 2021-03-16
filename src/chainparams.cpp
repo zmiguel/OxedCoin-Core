@@ -51,7 +51,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "JN 15/Mar/2021 Lisboa ja suspendeu vacinação da AstraZeneca";
+    const char* pszTimestamp = "JN 16/Mar/2021 Passaporte covid sera gratuito e privilegia vacinas aprovadas na UE";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -69,8 +69,8 @@ public:
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = 811879; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
-        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // 3.5 days
+        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // 1 days
         consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -110,10 +110,10 @@ public:
         m_assumed_blockchain_size = 22;
         m_assumed_chain_state_size = 3;
 
-        genesis = CreateGenesisBlock(1615838625, 2084980444, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1615934920, 2085273805, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x1951c723708d063cd77bab42bc40aadd0c53527116df98e994ecf041b1cd4535"));
-        assert(genesis.hashMerkleRoot == uint256S("0x709a1727250d90bdf24ccf3f175be4bf2e3b9f02395a10bb8adb5e3d16a9ac3e"));
+        assert(consensus.hashGenesisBlock == uint256S("0x68f304cb859ad7d0e12e74810e79c4770adf8822cafe27c9b41194bf3dd2af50"));
+        assert(genesis.hashMerkleRoot == uint256S("0x80a2c5e5b66639c4ed6080b7b09cce518b03857a63c63fad9616e24e76f75316"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -125,10 +125,10 @@ public:
 //        vSeeds.emplace_back("dnsseed.oxedcointools.com");
 //        vSeeds.emplace_back("dnsseed.oxedcoinpool.org");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,32);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,91);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,48);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,77);
         base58Prefixes[EXT_PUBLIC_KEY] = {0xed, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0xed, 0x88, 0xAD, 0xE4};
 
@@ -142,13 +142,13 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("0x1951c723708d063cd77bab42bc40aadd0c53527116df98e994ecf041b1cd4535")},
+                {  0, uint256S("0x68f304cb859ad7d0e12e74810e79c4770adf8822cafe27c9b41194bf3dd2af50")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 2cdba8c47858d34cf0e02dfb8733263a3ed8705b1663ec7c158783d77b93e7ee
-            /* nTime    */ 1615838625,
+            /* nTime    */ 1615934920,
             /* nTxCount */ 0,
             /* dTxRate  */ 0.0
         };
@@ -172,8 +172,8 @@ public:
         consensus.BIP65Height = 76; // 8075c771ed8b495ffd943980a95f702ab34fce3c8c54e379548bda33cc8c0573
         consensus.BIP66Height = 76; // 8075c771ed8b495ffd943980a95f702ab34fce3c8c54e379548bda33cc8c0573
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // 3.5 days
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
@@ -207,10 +207,10 @@ public:
         m_assumed_blockchain_size = 2;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1615843728, 2084745508, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1615934930, 2086975291, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x356ba0c4abc46024851758737923215da9683226736f25436796a5357384a8ad"));
-        assert(genesis.hashMerkleRoot == uint256S("0x709a1727250d90bdf24ccf3f175be4bf2e3b9f02395a10bb8adb5e3d16a9ac3e"));
+        assert(consensus.hashGenesisBlock == uint256S("0xf526dbc9726145c0cff4fcdb2795bfe89ecd186c203f6aadfb58248675fc2802"));
+        assert(genesis.hashMerkleRoot == uint256S("0x80a2c5e5b66639c4ed6080b7b09cce518b03857a63c63fad9616e24e76f75316"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -219,10 +219,10 @@ public:
 //        vSeeds.emplace_back("seed-b.oxedcoin.loshan.co.uk");
 //        vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,32);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,91);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,48);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,77);
         base58Prefixes[EXT_PUBLIC_KEY] = {0xed, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0xed, 0x35, 0x83, 0x94};
 
@@ -236,13 +236,13 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("356ba0c4abc46024851758737923215da9683226736f25436796a5357384a8ad")},
+                {0, uint256S("f526dbc9726145c0cff4fcdb2795bfe89ecd186c203f6aadfb58248675fc2802")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 e79561972208ba3a02c308482176b33f3ec841d4213ea7bbaa3f22b7c8a16f32
-            /* nTime    */ 1615843728,
+            /* nTime    */ 1615934930,
             /* nTxCount */ 0,
             /* dTxRate  */ 0.0
         };
@@ -266,8 +266,8 @@ public:
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in functional tests)
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in functional tests)
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // two weeks
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains
@@ -299,10 +299,10 @@ public:
 
         UpdateVersionBitsParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1615843728, 2084745508, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1615934930, 2086975291, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x356ba0c4abc46024851758737923215da9683226736f25436796a5357384a8ad"));
-        assert(genesis.hashMerkleRoot == uint256S("0x709a1727250d90bdf24ccf3f175be4bf2e3b9f02395a10bb8adb5e3d16a9ac3e"));
+        assert(consensus.hashGenesisBlock == uint256S("0xf526dbc9726145c0cff4fcdb2795bfe89ecd186c203f6aadfb58248675fc2802"));
+        assert(genesis.hashMerkleRoot == uint256S("0x80a2c5e5b66639c4ed6080b7b09cce518b03857a63c63fad9616e24e76f75316"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -313,7 +313,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("356ba0c4abc46024851758737923215da9683226736f25436796a5357384a8ad")},
+                {0, uint256S("f526dbc9726145c0cff4fcdb2795bfe89ecd186c203f6aadfb58248675fc2802")},
             }
         };
 
@@ -323,10 +323,10 @@ public:
             0
         };
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,91);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,77);
         base58Prefixes[EXT_PUBLIC_KEY] = {0xed, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0xed, 0x35, 0x83, 0x94};
 
