@@ -25,7 +25,7 @@ RUN apt-get install -y libzmq3-dev
 #build oxedcoin source
 RUN chmod -R 777 /oxedcoin
 RUN ./autogen.sh
-RUN ./configure --disable-wallet --without-gui --without-miniupnpc
+RUN ./configure --without-gui --without-miniupnpc
 RUN make
 RUN make install
 
